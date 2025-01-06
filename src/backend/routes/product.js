@@ -40,4 +40,17 @@ router.get("/get-user-all-product", (req, res) => {
   });
 });
 
+// Delete product
+router.delete("/delete-product/:id", (req, res) => {
+  const { id } = req.params;
+
+  Product.delete(id, (err, result) => {
+    if (err) {
+      return res.status(500).send("Error deleting product");
+    }
+    res.status(200).send("Product deleted successfully");
+  });
+});
+
+
 module.exports = router;

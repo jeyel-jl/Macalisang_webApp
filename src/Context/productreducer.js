@@ -1,4 +1,5 @@
 const ProductReducer = (state, action) => {
+  console.log("Action Received: ", action);
   switch (action.type) {
     case "API_LOADING":
       return {
@@ -20,6 +21,12 @@ const ProductReducer = (state, action) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+
+    case "DELETE_PRODUCT":
+      return {
+        ...state,
+        products: state.products.filter((product) => product._id !== action.payload),
       };
 
     case "SINGLE_PRODUCT_LOADING":

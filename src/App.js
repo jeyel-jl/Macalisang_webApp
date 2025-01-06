@@ -7,6 +7,7 @@ import Splash from './screens/start/Splash'
 import Singleproduct from './screens/Singleproduct/Singleproduct'
 import Addproduct from './screens/admin/Addproduct/Addproduct'
 import Viewproduct from './screens/admin/ViewProduct/Viewproduct'
+import Adminhome from './screens/admin/Home/Adminhome'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/Home' element={<Home/>} />
         <Route path='/singleproduct/:id' element={<Singleproduct/>} />
         <Route path='/Addproduct' element={<Addproduct/>} />
+        <Route path='/Adminhome' element={<Adminhome/>} />
         <Route path='/Viewproduct' element={<Viewproduct/>} />
       </Routes>
     </Router>

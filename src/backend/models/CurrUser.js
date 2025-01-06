@@ -7,7 +7,7 @@ const verifyToken = require("../config/authMiddleware"); // Middleware to valida
 router.get("/get-curr-user", verifyToken, (req, res) => {
   const userId = req.userId; // Extract userId set by the verifyToken middleware
 
-  const query = "SELECT id, username, email FROM users WHERE id = ?";
+  const query = "SELECT id, username, email, category FROM users WHERE id = ?";
 
   db.query(query, [userId], (err, results) => {
     if (err) {

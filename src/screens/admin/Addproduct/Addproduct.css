@@ -1,44 +1,46 @@
-*{
+* {
     font-family: 'Lato', sans-serif;
-}
-.add-main{
+  }
+  
+  .add-main {
     display: flex;
-}
-
-.add-heading{
+    width: 100%;
+  }
+  
+  .add-heading {
     color: rgb(32, 32, 255);
     font-weight: 800;
     font-size: 20px;
     margin-top: 30px;
     margin-left: 50px;
-}
-
-.heading-p {
+  }
+  
+  .heading-p {
     margin-left: 50px;
     margin-top: 15px;
     margin-right: 250px;
     font-size: 13px;
     color: rgb(79, 79, 79);
-}
-
-.border{
+  }
+  
+  .border {
     height: 2px;
     width: 80%;
-margin-top: 40px;
+    margin-top: 40px;
     border-bottom: 0.2px solid grey;
-}
-
-
-.product-form{
+  }
+  
+  .product-form {
     margin-top: 30px;
     margin-left: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 25px;
-}
-
-.product-form .addproducttext{
+    flex-grow: 1;
+  }
+  
+  .product-form .addproducttext {
     margin-top: 10px;
     width: 350px;
     height: 40px;
@@ -46,66 +48,135 @@ margin-top: 40px;
     border: none;
     color: black;
     background-color: rgb(230, 230, 230);
-
-}
-
-
-input[type=text]:active, input[type=text]:focus {
+  }
+  
+  input[type="text"]:active,
+  input[type="text"]:focus {
     background-color: white;
-}
-input[type=submit]:active, input[type=submit]:focus {
+  }
+  
+  input[type="submit"]:active,
+  input[type="submit"]:focus {
     background-color: black;
-}
-::placeholder{
+  }
+  
+  ::placeholder {
     color: black;
     font-family: 'Lato', sans-serif;
     padding-left: 15px;
-
-}
-
-.submitbutton{
+  }
+  
+  .submitbutton {
     height: 40px;
     width: 350px;
     background-color: rgb(78, 78, 248);
     color: white;
     border: none;
     font-weight: 700;
-}
-
-
-.pro-image{
+  }
+  
+  .pro-image {
     height: 200px;
     width: auto;
     margin: 15px;
-}
-
-.show-button{
-    height:40px ;
+  }
+  
+  .show-button {
+    height: 40px;
     width: 140px;
     background-color: rgb(218, 218, 218);
     margin-top: 1px;
     border-radius: 8px;
-}
-
-.show{
+  }
+  
+  .show {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
     gap: 10px;
-}
-
-.image-part{
+  }
+  
+  .image-part {
     margin-left: 50px;
     margin-top: 40px;
-}
-
-.admin-dropdown{
+  }
+  
+  .admin-dropdown {
     width: 600px;
-}
-
-.textfeild {
+  }
+  
+  .textfeild {
     width: 100%;
     display: flex;
     flex-direction: column;
-}
+  }
+  
+  /* Sidebar Styling */
+  .sidebar-main {
+    position: fixed;
+    width: 300px; /* Reduced the width of the sidebar */
+    height: 100%;
+    border-right: 0.5px solid grey;
+    top: 0;
+    left: 0;
+    background-color: #fff; /* Ensure background color for sidebar */
+  }
+  
+  /* Add content area with reduced margin */
+  .add-form-data {
+    flex-grow: 1; /* Allow content to take the remaining space */
+    margin-left: 300px; /* Adjusted margin to match sidebar width */
+    padding-right: 20px;
+    padding-left: 20px;
+    min-height: 100vh;
+    background-color: rgb(245, 245, 245); /* Light background color for the content */
+  }
+  
+  /* Add product form styling */
+  .add-form-data {
+    padding-top: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .add-main {
+      flex-direction: column; /* Stack sidebar and content vertically */
+    }
+  
+    .sidebar-main {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-right: none;
+    }
+  
+    .add-form-data {
+      margin-left: 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .product-form {
+      flex-direction: column;
+      margin-left: 20px;
+    }
+  
+    .add-heading {
+      font-size: 16px;
+    }
+  
+    .heading-p {
+      font-size: 12px;
+      margin-left: 10px;
+    }
+  
+    .image-part {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+  
+    .submitbutton {
+      width: 100%;
+    }
+  }
+  

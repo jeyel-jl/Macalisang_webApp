@@ -22,6 +22,7 @@ export const useSignin = () => {
     if (response.status === 200) {
       alert("Your Account Has Been Created");
       toast.success("Your Account Has Been Created");
+      navigate('/login');
     } else {
       
       toast.error("check some connection" , {
@@ -45,15 +46,20 @@ export const useSignin = () => {
         }
       ),
     });
-    if(response.status===200){
+
+    if(response.ok){
         const data = await response.json();
         localStorage.setItem('x-auth-token' , data.token)
         console.log(localStorage.getItem('x-auth-token'));
+        navigate('/Home');
     }
     else{
-      console.log(response.body);
+      const errorData = await response.json();
+      console.log(errorData.message || "An error occurred");
+      alert(errorData.message || "Login failed. Please try again.");
     }
   };
+
   return { signin, login };
 };
 

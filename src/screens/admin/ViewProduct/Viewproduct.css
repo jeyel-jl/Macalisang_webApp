@@ -1,12 +1,113 @@
-.view-main{
+* {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .view-main {
     display: flex;
+    width: 100%;
+  }
+  
+  .view-heading {
+    color: rgb(32, 32, 255);
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
+  
+  /* Table container styles */
+.table-container {
+  margin: 20px auto;
+  overflow-x: auto; /* Ensure the table is scrollable on smaller screens */
+  background-color: white; /* Add a white background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px;
 }
 
-.cards{
+/* Table styles */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.product-table thead {
+  background-color: #007bff; /* Blue header background */
+  color: white; /* White text for header */
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Subtle border */
+}
+
+.product-table th {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.product-table tr:hover {
+  background-color: #f1f1f1; /* Light grey on hover */
+}
+
+.product-table td {
+  font-size: 14px;
+  color: #333; /* Dark text for readability */
+}
+
+.product-table .delete-button {
+  background-color: #ff4d4d; /* Red button for delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-table .delete-button:hover {
+  background-color: #d11a2a; /* Darker red on hover */
+}
+
+
+  .cards {
     display: flex;
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
-    margin-left: 40px;
     margin-top: 50px;
-}
+  }
+  
+  .view-content {
+    flex-grow: 1;
+    margin-left: 300px; /* Adjust this to match the sidebar width */
+    padding-right: 20px;
+    padding-left: 20px;
+    min-height: 100vh;
+    background-color: rgb(245, 245, 245); /* Light background color for the content */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .view-main {
+      flex-direction: column; /* Stack sidebar and content vertically */
+    }
+  
+    .view-content {
+      margin-left: 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .view-heading {
+      font-size: 16px;
+    }
+  
+    .cards {
+      gap: 10px;
+    }
+  }
+  

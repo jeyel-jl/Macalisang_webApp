@@ -48,6 +48,8 @@ router.post("/login", (req, res) => {
 
     const user = result[0];
 
+    console.log("User data from database:", user);
+
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid password" });
@@ -66,6 +68,7 @@ router.post("/login", (req, res) => {
     res.status(200).json({
       message: "Login successful",
       token: token,
+      user: user,
     });
   });
 });

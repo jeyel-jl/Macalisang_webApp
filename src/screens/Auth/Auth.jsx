@@ -22,7 +22,6 @@ const Auth =   () => {
     
     try {
       await signin(username, email, password, category);
-      navigate('/login');
     } catch (error) {
       console.error("Signup failed", error);
     }

@@ -24,10 +24,10 @@ const AppProvider = ({ children }) => {
   // Helper function to get the token
   const getToken = () => localStorage.getItem("x-auth-token");
 
-  const getProduct = async (url) => {
+  const getProduct = async () => {
     dispatch({ type: "API_LOADING" });
     try {
-      const response = await axios.get(url, {
+      const response = await axios.get(API, {
         headers: { 'x-auth-token': getToken() },
       });
       const value = await response.data;
@@ -51,6 +51,18 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/product/delete-product/${id}`);
+      dispatch({ type: "DELETE_PRODUCT", payload: id });
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      // Optionally, handle error and dispatch error action
+    }
+  };
+  
+  
+
   const getSingleProduct = async (id) => {
     dispatch({ type: "SINGLE_PRODUCT_LOADING" });
     try {
@@ -64,11 +76,11 @@ const AppProvider = ({ children }) => {
 
   //useEffect(() => {
   // getProduct(API); // Get products on initial load
-  //  currUser(); // Optionally fetch current user when the app loads
+   // currUser(); // Optionally fetch current user when the app loads
   //}, []);
 
   return (
-    <Appcontext.Provider value={{ ...state, getSingleProduct, currUser }}>
+    <Appcontext.Provider value={{ ...state, getProduct, getSingleProduct, currUser, deleteProduct }}>
       {children}
     </Appcontext.Provider>
   );

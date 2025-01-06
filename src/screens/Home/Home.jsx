@@ -15,6 +15,7 @@ const Home = () => {
     currUser();
   }, []);
 
+  console.log("User data from database:", user);
   if (isCurrloading) {
     return <div>Loading user data...</div>;
   }

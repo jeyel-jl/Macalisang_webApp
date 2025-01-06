@@ -8,14 +8,12 @@ const Login = () => {
   const {login} = useSignin();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("")
-    const navigate = useNavigate();
 
     const handleSubmit = async (e)=>{
       e.preventDefault();
       
       try {
         await login(email, password);
-        navigate('/Home');
       } catch (error) {
         console.error("Login failed", error);
       }
