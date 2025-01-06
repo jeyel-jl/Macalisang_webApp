@@ -6,7 +6,6 @@ import { AdminProvider } from './Context/Admincontext';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-// Root reducer (combine your reducers here)
 const rootReducer = (state = {}, action) => {
   switch (action.type) {
     default:
@@ -14,15 +13,14 @@ const rootReducer = (state = {}, action) => {
   }
 };
 
-// Create Redux store
 const store = createStore(rootReducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}> {/* Provide Redux store */}
-    <AppProvider> {/* Your custom context provider */}
-      <AdminProvider> {/* Another custom context provider */}
-        <App /> {/* Main App component */}
+  <Provider store={store}>
+    <AppProvider>
+      <AdminProvider>
+        <App />
       </AdminProvider>
     </AppProvider>
   </Provider>

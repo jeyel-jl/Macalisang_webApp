@@ -7,10 +7,10 @@
   .parent {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
   }
   
   .right {
-    height: 100vh;
     width: 50%;
     background-color: #1241e8;
     display: flex;
@@ -100,10 +100,10 @@
   }
   
   .right img {
-    width: 80%; /* Ensure the image fits well in the container */
-    max-width: 400px; /* Set a maximum width for the image */
-    height: auto; /* Maintain the image aspect ratio */
-    margin-bottom: 20px; /* Add space between the image and the text */
+    width: 80%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
   }
   
   .right h1 {
@@ -118,8 +118,8 @@
     color: white;
     font-family: 'Lato', sans-serif;
     font-size: 14px;
-    max-width: 500px; /* Limit the paragraph width */
-    margin: 0 auto; /* Center the paragraph text */
+    max-width: 500px;
+    margin: 0 auto;
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;

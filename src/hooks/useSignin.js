@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export const useSignin = () => {
     const navigate = useNavigate();
 
-  const signin = async (username, email, password, category) => {
+  const signin = async (username, email, password, category, address, phone) => {
     const response = await fetch("http://localhost:3000/api/auth/register", {
       method: "POST",
       headers: {
@@ -16,10 +16,12 @@ export const useSignin = () => {
         email: email,
         password: password,
         category: category,
+        address: address,
+        phone_number: phone,
       }),
     });
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       alert("Your Account Has Been Created");
       toast.success("Your Account Has Been Created");
       navigate('/login');
