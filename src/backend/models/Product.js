@@ -5,7 +5,15 @@ class Product {
     db.query(
       "INSERT INTO products (name, detail, category, price, company, image) VALUES (?, ?, ?, ?, ?, ?)",
       [name, detail, category, price, company, image],
-      callback
+      (err, result) => {
+        if (err) {
+          console.error("Error during query:", err);
+          return callback(err, null);
+        }
+  
+        console.log("Product successfully added:", result);
+        return callback(null, result);
+      }
     );
   }
 

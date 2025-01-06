@@ -62,10 +62,10 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getProduct(API); // Get products on initial load
-    currUser(); // Optionally fetch current user when the app loads
-  }, []);
+  //useEffect(() => {
+  // getProduct(API); // Get products on initial load
+  //  currUser(); // Optionally fetch current user when the app loads
+  //}, []);
 
   return (
     <Appcontext.Provider value={{ ...state, getSingleProduct, currUser }}>

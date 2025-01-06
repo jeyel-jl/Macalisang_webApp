@@ -96,10 +96,16 @@ input[type=submit]:active, input[type=submit]:focus {
 }
 
 .image-part{
-    margin-left: 25px;
+    margin-left: 50px;
     margin-top: 40px;
 }
 
 .admin-dropdown{
     width: 600px;
+}
+
+.textfeild {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }

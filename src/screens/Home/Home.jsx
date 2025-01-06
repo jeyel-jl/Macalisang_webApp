@@ -8,11 +8,11 @@ import { useContext, useEffect } from 'react';
 import { Appcontext } from '../../Context/Appcontext';
 
 const Home = () => {
-  const { currUser, user, isCurrloading } = useContext(Appcontext);
+  const { getProduct, currUser, user, isCurrloading } = useContext(Appcontext);
 
   useEffect(() => {
+    getProduct();
     currUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isCurrloading) {

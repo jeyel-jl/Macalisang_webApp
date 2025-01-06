@@ -1,135 +1,153 @@
-import React, {  useState } from 'react'
-import Adminsidebar from '../Components/AdminSidebar/Adminsidebar'
-import './Addproduct.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faPlay} from '@fortawesome/free-solid-svg-icons'
-import {useAddproduct} from '../../../hooks/useAddproduct'
-import axios from 'axios'
+import React, { useState } from "react";
+import Adminsidebar from "../Components/AdminSidebar/Adminsidebar";
+import "./Addproduct.css";
+import { useAddproduct } from "../../../hooks/useAddproduct";
 
 const Addproduct = () => {
+  const [imageUrls, setImageUrls] = useState("");
+  const [name, setName] = useState("");
+  const [detail, setDetail] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("Dogs");
+  const [company, setCompany] = useState("");
+  const [newImageUrl, setNewImageUrl] = useState("");
+  const { addProduct } = useAddproduct();
 
-  const [selectedFiles, setselectedFiles] = useState(null);
-  const [imageurltoshow, setimageurltoshow] = useState(null);
-  const [name, setname] = useState(""); 
-  const [detail, setdetail] = useState("");
-  const [price, setprice] = useState("");
-  const [category, setcategory] = useState("");
-  const [company, setcompany] = useState("");
-  const {addProduct} = useAddproduct();
+  const handleEnlistProduct = async (e) => {
+    e.preventDefault();
 
-  let files = [];
+    if (newImageUrl.trim() !== "") {
+      setImageUrls((prev) => [...prev, newImageUrl]);
+    }
 
-  const handleImage =  async(e)=>{
+    const updatedImageUrls = [...imageUrls, newImageUrl.trim()];
+    await addProduct(name, detail, category, price, company, updatedImageUrls);
 
-    for(let i =0;i<selectedFiles.length;i++){
-      let formData = new FormData();
-      formData.append('file' , selectedFiles[i]);
-      formData.append("upload_preset" , "qouutdij");
+    console.log({
+      name,
+      detail,
+      company,
+      category,
+      price,
+      imageUrls: updatedImageUrls,
+    });
 
-      axios.post("https://api.cloudinary.com/v1_1/dwkmxsthr/upload" , formData , {
-        onUploadProgress:(ProgressEvent)=>{
-          console.log("Uploading..." ,Math.round( ProgressEvent.loaded/ProgressEvent.total));
-        }
-      }).then(response=>{
-        files.push(response.data.url);
-        setimageurltoshow(files);
-      })
-      }  
-  }
+    setName("");
+    setDetail("");
+    setPrice("");
+    setCategory("");
+    setCompany("");
+    setNewImageUrl("");
+    setImageUrls("");
+  };
 
-
-  const showdata = async (e)=>{
-    e.preventDefault()
-    await addProduct(name , detail , category , price , company , imageurltoshow);
-    console.log({name,detail , company , category , price , imageurltoshow});
-  }
 
   return (
     <>
-   <div className="add-main">
-    <Adminsidebar/>
-    <div className="add-form-data">
-    <h1 className='add-heading'>Add Product 🔔</h1>
-    <p className='heading-p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus laborum quos quo tenetur exercitationem iusto officia, veniam assumenda dolorem labore ab alias facere eos dolore autem reiciendis! Beatae, exercitationem quae!</p>
+      <div className="add-main">
+        <Adminsidebar />
+        <div className="add-form-data">
+          <h1 className="add-heading">Add Product 🔔</h1>
+          <p className="heading-p">
+            “What really decides consumers to buy or not to buy is the content
+            of your advertising, not its form.”
+          </p>
+          <div className="border"></div>
+          <form onSubmit={handleEnlistProduct}>
+            <div className="product-form">
+              <div className="textfeild">
+                <h5>Product Name 🛒</h5>
+                <input
+                  type="text"
+                  className="addproducttext"
+                  placeholder="Birch Dog Food"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="textfeild">
+                <h5>Product Detail 📢</h5>
+                <input
+                  type="text"
+                  className="addproducttext"
+                  placeholder="Imported Dog Food from Thailand"
+                  value={detail}
+                  onChange={(e) => setDetail(e.target.value)}
+                />
+              </div>
+              <div className="textfeild">
+                <h5>Product Price 💸</h5>
+                <input
+                  type="text"
+                  className="addproducttext"
+                  placeholder="59.99"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div className="textfeild">
+                <h5>Product Company 🏛️</h5>
+                <input
+                  type="text"
+                  className="addproducttext"
+                  placeholder="FurEver"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </div>
+              <div className="textfeild">
+                <h5>Product category 🌩️</h5>
+                <div className="admin-dropdown">
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value="Dogs">Dogs 🐕</option>
+                    <option value="Cats">Cats 🐈</option>
+                    <option value="Other">Other ❔</option>
+                  </select>
+                </div>
+                <br />
+                <p>{category}</p>
+              </div>
+              <div className="textfeild">
+                <h5>Add Product Image URLs</h5>
+                <input
+                  type="text"
+                  className="addproducttext"
+                  placeholder="Enter image URL"
+                  value={newImageUrl}
+                  onChange={(e) => setNewImageUrl(e.target.value)}
+                />
+              </div>
+              <div className="textfeild">
+                <input
+                  className="submitbutton"
+                  type="submit"
+                  value="Enlist Now 🗾"
+                />
+              </div>
+            </div>
+          </form>
 
-    <div className="border"></div>
-<form onSubmit={showdata}>
-    <div className="product-form">
-   <div className="textfeild">
-   <h5>Product Name 🛒</h5>
-    < input type='text' className='addproducttext' placeholder="Canon Shirt " onChange={(e)=>{
-      setname(e.target.value)
-    }}></ input>
-   </div>
-   <div className="textfeild">
-   <h5>Product Detail 📢</h5>
-    < input type='text' className='addproducttext' placeholder="Denim shirt with silk design " onChange={(e)=>{
-      setdetail(e.target.value)
-    }} ></ input>
-   </div>
-   <div className="textfeild">
-   <h5>Product Price💸</h5>
-    < input type='text' className='addproducttext' placeholder="999 " onChange={(e)=>{
-      setprice(e.target.value)
-    }}></ input>
-   </div>
-   <div className="textfeild">
-   <h5>Product Company 🏛️</h5>
-    < input type='text' className='addproducttext' placeholder="Canont "  onChange={(e)=>{
-setcompany(e.target.value)
-    }}></ input>
-   </div>
-   <div className="textfeild">
-   <h5>Product category 🌩️</h5>
-    <div className="admin-dropdown">
-      <select value={category} onChange={(e)=>{
-        setcategory(e.target.value)
-      }}>
-        <option value="Clothes">Clothes 👔</option>
-        <option value="Gadgets">Gadgets 💻</option>
-        <option value="Electronics">Electronics 🪫</option>
-      </select>
-    </div>
-    <br />
-
-    <p>{category}</p>
-   </div>
-   <div className="textfeild">
-   <h5>Add Product Images</h5>
-    < input type='file' multiple
-      className='addproducttext' onChange={(e)=>{
-        setselectedFiles(e.target.files)
-      }} ></ input>
-   </div>
-   <div className="show-button">
-
-    <div onClick={handleImage} className="show">
-    <FontAwesomeIcon icon={faPlay} style={{color: "#131416",}} /> 
-    <h6>Show Images</h6>
-    </div>
-   </div>
-   
-   <div className="textfeild">
-   < input  className='submitbutton' type="submit"  value="Enlist Now 🗾"/>
-   </div>
-   
-    </div>
-    </form>
-    
-   <div className="image-part">
-    {
-      imageurltoshow?.length > 0 ? imageurltoshow.map(e=>(
-        <img src={e} alt="clodinary product" key={e} className='pro-image' />
-      )) : <p>Please Select Some Images</p>
-    }
-   </div>
-    </div>
-
-   </div>
-
+          <div className="image-part">
+            {imageUrls.length > 0 ? (
+              imageUrls.map((url, index) => (
+                <img
+                  src={url}
+                  alt="product"
+                  key={index}
+                  className="pro-image"
+                />
+              ))
+            ) : (
+              <p>No images added yet.</p>
+            )}
+          </div>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Addproduct
-
+export default Addproduct;

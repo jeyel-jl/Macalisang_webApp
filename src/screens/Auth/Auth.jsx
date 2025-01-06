@@ -4,12 +4,13 @@ import { useSignin } from '../../hooks/useSignin';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import image from '../Auth/secure.png'
 
 
 const Auth =   () => {
 
-  const [category, setcategory] = useState(" ");
-  const [username , setUsername] = useState(" ");
+  const [category, setcategory] = useState("Admin");
+  const [username , setUsername] = useState("");
   const [email , setEmail] = useState(" ");
   const [password , setpassword] = useState(" ");
   const navigate = useNavigate();
@@ -21,7 +22,6 @@ const Auth =   () => {
     
     try {
       await signin(username, email, password, category);
-      // After successful signup, navigate to login page or home
       navigate('/login');
     } catch (error) {
       console.error("Signup failed", error);
@@ -60,7 +60,7 @@ const Auth =   () => {
             </form>
         </div>
         <div className="right">
-          <img src="https://cdn3d.iconscout.com/3d/premium/thumb/fingerprint-lock-5515001-4603542.png?f=webp" alt="s" />
+          <img src={image} alt="s" />
           <h1>Let's Explore The Pawsome Store Now!</h1>
           <p>"Join us today! Create your account and give your pet the care they deserve with just a few clicks."</p>
         </div>

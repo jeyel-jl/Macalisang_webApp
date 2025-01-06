@@ -12,7 +12,7 @@ const Adminsidebar = () => {
   return (
     <div className="sidebar-main">
         <div className="side-logo">
-            <h1>🛍️  Bazaar</h1>
+            <h1>🛍️  FurEver</h1>
         </div>
         <div className="side-links">
            <div className="link1">
