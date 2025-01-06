@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignin } from '../../hooks/useSignin';
+import image from '../Auth/secure.png'
 
 
 const Login = () => {
@@ -14,7 +15,6 @@ const Login = () => {
       
       try {
         await login(email, password);
-        // After successful signup, navigate to login page or home
         navigate('/Home');
       } catch (error) {
         console.error("Login failed", error);
@@ -44,7 +44,7 @@ const Login = () => {
             </form>
         </div>
         <div className="right">
-          <img src="https://cdn3d.iconscout.com/3d/premium/thumb/fingerprint-lock-5515001-4603542.png?f=webp" alt="s" />
+          <img src={image} alt="s" />
           <h1>Let's Explore The Pawsome Store Now!</h1>
           <p>"Join us today! Create your account and give your pet the care they deserve with just a few clicks."</p>
         </div>

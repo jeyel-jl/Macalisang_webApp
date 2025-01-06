@@ -16,7 +16,7 @@ const Home = () => {
   }, []);
 
   if (isCurrloading) {
-    return <div>Loading user data...</div>; // You can replace this with a loading spinner
+    return <div>Loading user data...</div>;
   }
 
   const { category } = user || {}; // Destructure with fallback to empty object if user is undefined

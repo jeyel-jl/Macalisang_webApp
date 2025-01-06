@@ -5,16 +5,13 @@ const User = require("../models/User");
 
 const router = express.Router();
 
-// User Registration Route
 router.post("/register", (req, res) => {
   const { username, email, password, category } = req.body;
 
-  // Validation: Check if all fields are provided
   if (!username || !email || !password || !category) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
-  // Check if the email already exists in the database
   User.findByEmail(email, (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Error checking email", error: err });
@@ -23,10 +20,8 @@ router.post("/register", (req, res) => {
       return res.status(400).json({ message: "Email is already in use" });
     }
 
-    // Hash the password before storing it
     const hashedPassword = bcrypt.hashSync(password, 8);
 
-    // Create the user if email is not taken
     User.create({ username, email, password: hashedPassword, category }, (err, result) => {
       if (err) {
         return res.status(500).json({ message: "Error registering user", error: err });
@@ -40,11 +35,9 @@ router.post("/register", (req, res) => {
   });
 });
 
-// User Login Route
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  // Check if the email exists in the database
   User.findByEmail(email, (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Error checking email", error: err });
@@ -53,28 +46,26 @@ router.post("/login", (req, res) => {
       return res.status(400).json({ message: "Email not found" });
     }
 
-    const user = result[0]; // Get the first user
+    const user = result[0];
 
-    // Compare the password with the hashed password
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    // Generate a token (JWT) for the user
     const token = jwt.sign(
       { 
         userId: user.id, 
         username: user.username, 
-        category: user.category // Include the category in the token
+        category: user.category
       }, 
       "your_secret_key", 
-      { expiresIn: "1h" } // Set expiration time for the token
+      { expiresIn: "1h" } 
     );
 
     res.status(200).json({
       message: "Login successful",
-      token: token, // Send the token back to the client
+      token: token,
     });
   });
 });

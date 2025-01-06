@@ -22,7 +22,6 @@ export const useSignin = () => {
     if (response.status === 200) {
       alert("Your Account Has Been Created");
       toast.success("Your Account Has Been Created");
-      navigate('/Login');
     } else {
       
       toast.error("check some connection" , {
@@ -39,13 +38,17 @@ export const useSignin = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email:email, password:password }),
+      body: JSON.stringify(
+        {
+          email: email,
+          password: password
+        }
+      ),
     });
     if(response.status===200){
         const data = await response.json();
         localStorage.setItem('x-auth-token' , data.token)
         console.log(localStorage.getItem('x-auth-token'));
-        navigate('/Home');
     }
     else{
       console.log(response.body);
