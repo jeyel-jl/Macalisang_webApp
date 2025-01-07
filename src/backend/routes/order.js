@@ -1,45 +1,53 @@
 const express = require("express");
 const Order = require("../models/Order");
-const OrderItem = require("../models/OrderItem");
+const OrderItem = require("../models/OrderItems");
 const Cart = require("../models/Cart");
-const verifyToken = require("../middleware/verifyToken");
+const verifyToken = require("../config/authMiddleware");
 
 const router = express.Router();
 
-// Place an order
 router.post("/place-order", verifyToken, (req, res) => {
   const userId = req.userId;
   const { totalAmount } = req.body; // Get total amount from client-side
   const status = "Pending"; // Default status when placing an order
 
-  // Create order
-  Order.createOrder(userId, totalAmount, status, (err, result) => {
+  // Fetch cart items
+  Cart.getCart(userId, (err, cartItems) => {
     if (err) {
-      return res.status(500).send("Error placing order");
+      console.error("Error fetching cart items:", err);
+      return res.status(500).json("Error fetching cart items");
     }
-    const orderId = result.insertId;
 
-    // Get cart items and add them to order_items table
-    Cart.getCart(userId, (err, cartItems) => {
+    if (cartItems.length === 0) {
+      return res.status(400).json("Cart is empty");
+    }
+
+    // Create order with status "Pending"
+    Order.createOrder(userId, totalAmount, status, (err, result) => {
       if (err) {
-        return res.status(500).send("Error fetching cart items");
+        console.error("Error placing order:", err);
+        return res.status(500).json("Error placing order");
       }
 
+      const orderId = result.insertId; // Get the new order's ID
+
+      // Insert each cart item into the order_items table
       cartItems.forEach((item) => {
-        OrderItem.createOrderItem(orderId, item.id, item.quantity, item.price, (err, result) => {
+        OrderItem.createOrderItem(orderId, item.id, item.quantity, item.price, (err) => {
           if (err) {
-            console.error("Error adding order item:", err);
+            console.error("Error inserting order item:", err);
           }
         });
       });
 
-      // Clear the cart after order is placed
-      Cart.clearCart(userId, (err, result) => {
+      // Optionally, clear the cart after the order is placed
+      Cart.removeFromCart(userId, (err) => {
         if (err) {
-          return res.status(500).send("Error clearing cart");
+          console.error("Error clearing cart:", err);
         }
-        res.status(200).send("Order placed successfully");
       });
+
+      res.status(200).json({ message: "Order placed successfully", orderId });
     });
   });
 });

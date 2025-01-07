@@ -4,6 +4,7 @@ const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/product");
 const getCurrUserRoutes = require("./models/CurrUser");
 const cartRoutes = require("./routes/cart");
+const orders = require("./routes/order");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/curr", getCurrUserRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order", orders);
 
 
 // Start server

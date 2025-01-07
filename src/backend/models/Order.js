@@ -4,8 +4,8 @@ class Order {
   // Create an order
   static createOrder(userId, totalAmount, status, callback) {
     db.query(
-      "INSERT INTO orders (userId, totalAmount, status) VALUES (?, ?, ?)",
-      [userId, totalAmount, status],
+      "INSERT INTO orders (userId, status, total_price, orderDate) VALUES (?, ?, ?, NOW())",
+      [userId, status, totalAmount], 
       callback
     );
   }
@@ -32,7 +32,7 @@ class Order {
       callback
     );
   }
-  
+
 }
 
 module.exports = Order;

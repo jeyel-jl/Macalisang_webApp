@@ -63,10 +63,10 @@ class Cart {
 
 
   // Remove product from the user's cart
-  static removeFromCart(userId, productId, callback) {
+  static removeFromCart(userId, callback) {
     db.query(
-      "DELETE FROM carts WHERE userId = ? AND productId = ?",
-      [userId, productId],
+      "DELETE FROM carts WHERE userId = ?",
+      [userId],
       (err, result) => {
         if (err) {
           console.error(`Error removing product (userId: ${userId}, productId: ${productId}):`, err);

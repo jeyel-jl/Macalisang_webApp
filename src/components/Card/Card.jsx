@@ -62,7 +62,7 @@ const Card = ({ id, name, image, category, price }) => {
       <div className="card-text">
         <div className="up-text">
           <h1>{name}</h1>
-          <h2>₹{price}</h2>
+          <h2>Php {price}</h2>
         </div>
         <p className="detail">{category}</p>
 
