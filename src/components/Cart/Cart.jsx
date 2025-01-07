@@ -106,62 +106,66 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-container">
-      <h1 className="cart-title">Your Cart 🛒</h1>
-      <Link to="/home">
-        <button className="back-btn">Back</button>
-      </Link>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <div className="cart-items-container">
-          <table className="cart-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>Php{item.price}</td>
-                  <td>
-                    <div className="quantity-controls">
-                      <button
-                        onClick={() => {
-                          console.log("Product ID:", item.id, "Quantity:", item.quantity);
-                          updateQuantity(item.id, item.quantity - 1);
-                        }}
-                      >
-                        -
-                      </button>
-                      {item.quantity}
-                      <button
-                        onClick={() => {
-                          console.log("Product ID:", item.id, "Quantity:", item.quantity);
-                          updateQuantity(item.id, item.quantity + 1);
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <div className="total-amount">
-        <h3>Total Amount: Php{totalAmount.toFixed(2)}</h3> {/* Display total amount */}
+    <div className="cart-page">
+      <div className="cart-header">
+        <h1 className="cart-title">Your Cart 🛒</h1>
+        <Link to="/home">
+          <button className="back-btn">Back</button>
+        </Link>
       </div>
-      <button onClick={handleCheckout} className="checkout-btn">Proceed to Checkout</button>
+      <main className="cart-container">
+        {cartItems.length === 0 ? (
+          <p className="empty-cart">Your cart is empty</p>
+        ) : (
+          <div className="cart-items-container">
+            <table className="cart-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>Php{item.price}</td>
+                    <td>
+                      <div className="quantity-controls">
+                        <button
+                          onClick={() => {
+                            updateQuantity(item.id, item.quantity - 1);
+                          }}
+                        >
+                          -
+                        </button>
+                        {item.quantity}
+                        <button
+                          onClick={() => {
+                            updateQuantity(item.id, item.quantity + 1);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <div className="total-amount">
+          <h3>Total Amount: Php{totalAmount.toFixed(2)}</h3>
+        </div>
+      </main>
+      <div className="checkout-container">
+        <button onClick={handleCheckout} className="checkout-btn">Checkout</button>
+      </div>
       <Footer />
     </div>
-  );     
+  );         
 };
 
 export default Cart;

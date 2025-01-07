@@ -1,56 +1,142 @@
-.header{
-    height: 400px;
-    width: auto;
-    background-color: #fbf0e4;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 30PX;
-    border-radius: 10px;
+.header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between; /* Keep content aligned to the left and right */
     align-items: center;
-    padding-left: 60px;
-    padding-right: 60px;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    width: 100%;
+    background-color: #9aaef4; /* Soft pink background */
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
-
-.left-header{
-    flex-basis: 50%;
-    font-family: 'Lato', sans-serif;
+/* Left section with left-aligned text */
+.left-header {
+    flex: 1 1 50%;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
     flex-direction: column;
+    align-items: flex-start; /* Left-align text */
+    background-color: transparent; /* Soft pink background */
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.left-header h1{
-    font-size: 40px;
+.header .left-header h1, .left-header p {
+    background-color: transparent; /* Ensure no background */
+    font-size: 2rem;
+}
+
+/* Left-aligned heading styles */
+.left-header h1 {
+    font-size: 2.5rem;
     font-weight: 800;
+    margin: 0 0 10px;
+    text-align: left; /* Align text to the left */
+    color: #000000; /* Soft pink for text */
 }
 
-.left-header p{
-    margin-right: 150px;
-    padding-top: 10px;
+.header .left-header h1 {
+    font-size: 3rem;
 }
 
-.check-button{
-    margin-top: 15px;
-    background-color: rgb(28, 28, 28);
-    color: white;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+/* Left-aligned paragraph styles */
+.left-header p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 10px 0;
+    text-align: left; /* Align text to the left */
+    color: #000000; /* Soft pink for text */
+}
+
+.check-button-container {
+    display: flex;
+    justify-content: flex-start; /* Align button to the left */
+    margin-top: 5px; /* Add space between the quote and the button */
+}
+
+.left-header .check-button-container {
+    color: #ffffff;
+    background-color: #000000;
     border-radius: 5px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
+}
+
+.left-header .check-button-container:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #1a17d4; /* Blue text color */
+    border: 1px solid #1a17d4; /* Add a border on hover */
+    transition: all 0.3s ease;
+}
+
+.left-header .check-button-container .check-button {
+    color: #ffffff;
+}
+
+.left-header .check-button-container .check-button:hover {
+    color: #000000;
+}
+
+.check-button {
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text for contrast */
+    padding: 5px 10px; /* Reduced size */
+    border-radius: 0px;
+    font-size: 0.9rem; /* Smaller font size */
+    border: none; /* Ensure no border initially */
     cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease; /* Smooth transition */
 }
 
-.check-button:hover{
-    border: 0.5px solid black;
+.check-button:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #1a17d4; /* Blue text color */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Right section for image */
+.right-header {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: flex-end; /* Align image to the right */
+    align-items: center;
+    padding: 0;
     background-color: transparent;
-    color: black;
-    transition: 0.5s;
 }
 
+.right-header img {
+    max-width: 150%; /* Keep image responsive */
+    height: auto;
+    object-fit: contain; /* Maintain proportions */
+    background-color: transparent; /* Ensure no background color applied */
+    border-radius: 0; /* Ensure no rounding effect */
+    display: block; /* Ensure proper alignment */
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack vertically */
+        align-items: flex-start; /* Keep left and right sections aligned left */
+        gap: 20px;
+    }
+
+    .left-header,
+    .right-header {
+        flex-basis: 100%;
+        align-items: flex-start; /* Keep them aligned to the left */
+        text-align: left; /* Left align text */
+    }
+
+    .right-header {
+        margin-top: 20px;
+    }
+
+    .left-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .check-button {
+        font-size: 0.8rem; /* Even smaller button on small screens */
+        padding: 4px 8px;
+    }
+}

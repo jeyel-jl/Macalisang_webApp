@@ -31,7 +31,6 @@ const Home = () => {
         <div className="userhome">
           <Nav />
           <Header />
-          <Feature />
           <Multipleproduct />
           <Footer />
         </div>

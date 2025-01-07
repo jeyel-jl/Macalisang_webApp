@@ -11,7 +11,7 @@ const Multipleproduct = () => {
     return (
       <>
   <div className="f-heading">
-  <h1>Checkout Our All Projects</h1>
+  <h1>Checkout All our Products</h1>
   </div>
   <div className="f-main">
       {

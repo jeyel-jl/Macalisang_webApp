@@ -1,72 +1,86 @@
+/* Container for the entire page */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the page takes up at least the full height */
+  margin: 0;
+  margin-bottom: 10px;
+  background-color: #a7bdd4;
+}
+
+/* Footer container adjustments */
 .footer-container {
-    background-color: #ffffff; /* Light background color */
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    margin-top: 100px; /* Increased space above the footer */
+  background-color: #a7bdd4; /* Light background color */
+  padding: 10px 20px; /* Reduced padding */
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: auto; /* Pushes the footer to the bottom of the page */
+  height: 50px; /* Set a fixed height for the footer */
+  margin-top: 20px; /* Add space above the footer */
+  margin-bottom: 10px;
+}
+
+/* Social icons container */
+.footer-social-icons {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  margin-bottom: 10px; /* Reduced space below the icons */
+}
+
+/* Individual icon container */
+.footer-social-icon-container {
+  margin: 0 10px; /* Adjust the margin between icons */
+}
+
+/* Icon styling */
+.social-icon {
+  font-size: 1.5rem; /* Slightly smaller icon size */
+  color: #333; /* Default icon color */
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #0073e6; /* Hover effect color */
+}
+
+/* Footer text styling */
+.footer-text {
+  font-size: 0.8rem; /* Smaller text size */
+  color: #333;
+  margin-top: 5px; /* Reduced space above the text */
+}
+
+/* Mobile and tablet responsiveness */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    padding: 8px 15px; /* Adjust padding on smaller devices */
+    height: 40px; /* Reduce height of footer */
+    margin-top: 15px; /* Reduce margin-top for smaller devices */
   }
-  
-  .footer-social-icons {
-    display: flex;
-    justify-content: center; /* Center the icons horizontally */
-    margin-bottom: 20px; /* Add space below the icons */
-  }
-  
+
   .footer-social-icon-container {
-    margin: 0 20px; /* Adjust the margin between icons to create space */
+    margin: 0 8px; /* Smaller margin on tablet */
   }
-  
-  .social-icon {
-    font-size: 2rem; /* Adjust the size of the icons */
-    color: #333; /* Default icon color */
-    transition: color 0.3s ease;
-  }
-  
-  .social-icon:hover {
-    color: #0073e6; /* Hover effect color */
-  }
-  
+
   .footer-text {
-    font-size: 1rem;
-    color: #333;
-    margin-top: 10px; /* Add space above the text */
+    font-size: 0.7rem; /* Even smaller text */
   }
-  
-  .footer {
-    margin-top: 20px; /* Ensure space above the footer */
+}
+
+/* Extra small screens (like mobile phones) */
+@media screen and (max-width: 480px) {
+  .footer-container {
+    padding: 5px 10px; /* Smaller padding for very small screens */
+    height: 35px; /* Reduce height further for mobile */
+    margin-top: 10px; /* Add margin-top for mobile */
   }
-  
-  /* Mobile and tablet responsiveness */
-  @media screen and (max-width: 768px) {
-    .footer-container {
-      padding: 15px; /* Adjust padding on smaller devices */
-      margin-top: 80px; /* Reduce space above the footer */
-    }
-  
-    .footer-social-icon-container {
-      margin: 0 15px; /* Smaller margin on tablet */
-    }
-  
-    .footer-text {
-      font-size: 0.9rem; /* Slightly smaller text */
-    }
+
+  .footer-social-icon-container {
+    margin: 0 5px; /* Reduced margin for mobile */
   }
-  
-  /* Extra small screens (like mobile phones) */
-  @media screen and (max-width: 480px) {
-    .footer-container {
-      padding: 10px; /* Smaller padding for very small screens */
-      margin-top: 60px; /* Even less space above footer */
-    }
-  
-    .footer-social-icon-container {
-      margin: 0 10px; /* Reduced margin for mobile */
-    }
-  
-    .footer-text {
-      font-size: 0.8rem; /* Even smaller text */
-    }
+
+  .footer-text {
+    font-size: 0.6rem; /* Even smaller text for mobile */
   }
-  
+}

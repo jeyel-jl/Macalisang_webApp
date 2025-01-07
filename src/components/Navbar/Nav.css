@@ -1,67 +1,158 @@
 * {
     margin: 0;
     padding: 0;
-    background-color: transparent;
+    box-sizing: border-box;
+}
+
+.nav-container {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .nav-parent {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 20px;
+    align-items: center;
 }
 
 .left-nav h1 {
     color: rgb(22, 22, 22);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .mid-nav {
     display: flex;
-    flex-direction: row;
-    gap: 25px;
+    gap: 20px;
 }
 
 .mid-nav p {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(71, 71, 71);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-/* Hover effect for mid-nav links */
 .mid-nav p:hover {
-    color: rgb(0, 123, 255); /* Change color on hover */
+    color: #d45a5a;
 }
 
 .right-nav {
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    justify-content: flex-end; /* Ensure items are aligned to the right */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
+    max-width: 100%; 
 }
 
 .right-nav p {
     background-color: rgb(27, 27, 27);
     color: white;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
+    padding: 8px 15px;
     border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-/* Hover effect for right-nav links */
 .right-nav p:hover {
-    color: rgb(0, 123, 255); /* Change color on hover */
-    background-color: rgb(27, 27, 27); /* Keep the same background */
+    background-color: rgb(0, 123, 255);
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 800px; /* Restrict maximum width */
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Smaller gap between input and button */
+}
+
+.nav-container .nav-parent .mid-nav p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-container .nav-parent .left-nav h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.nav-container .search-bar {
+    margin-bottom: -5px;
+    margin-top: -8px;
+    padding: -10px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px; /* Adjust padding to match the button */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    max-width: 400px;
+    margin-top: 10px;
+    margin-left: 50px;
+    height: 38px; /* Ensure consistent height */
+    box-sizing: border-box; /* Ensures padding and border are included in the height */
+}
+
+.search-bar button {
+    padding: 0 12px; /* Remove vertical padding to match the input height */
+    border: none;
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    height: 38px; /* Match input height */
+    box-sizing: border-box; /* Ensures padding and border are included in the height */
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.search-bar button:hover {
+    background-color: rgb(0, 100, 200);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-parent {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .mid-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .right-nav {
+        justify-content: center; /* Center the buttons on smaller screens */
+        width: 100%; /* Make sure the right-nav takes the full width */
+        gap: 10px; /* Smaller gap between buttons */
+    }
+
+    .right-nav p {
+        width: auto; /* Allow buttons to shrink or expand based on content */
+        padding: 8px 12px; /* Adjust padding for smaller screens */
+    }
 }
