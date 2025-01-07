@@ -25,7 +25,7 @@ const Adminsidebar = () => {
         </div>
         <div className="link1">
           <FontAwesomeIcon icon={faTruck} size='lg' style={{ color: "#367df7" }} />
-          <p>All Listed Orders</p>
+          <Link to="/AllProducts"><p>All Listed Orders</p></Link>
         </div>
         <div className="link1">
           <FontAwesomeIcon icon={faRss} size='lg' style={{ color: "#367df7" }} />

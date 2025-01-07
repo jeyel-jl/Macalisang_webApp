@@ -24,6 +24,15 @@ class Order {
   static getOrderById(orderId, callback) {
     db.query("SELECT * FROM orders WHERE id = ?", [orderId], callback);
   }
+
+  static updateOrderStatus(orderId, status, callback) {
+    db.query(
+      "UPDATE orders SET status = ? WHERE id = ?",
+      [status, orderId],
+      callback
+    );
+  }
+  
 }
 
 module.exports = Order;

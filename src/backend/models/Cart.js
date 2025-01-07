@@ -9,6 +9,7 @@ class Cart {
       [userId, productId],
       (err, result) => {
         if (err) {
+          console.error(`Database error in addToCart (userId: ${userId}, productId: ${productId}):`, err);
           return callback(err);
         }
 
@@ -41,15 +42,43 @@ class Cart {
     );
   }
 
+  static updateQuantity(userId, productId, quantity, callback) {
+    db.query(
+      "UPDATE carts SET quantity = ? WHERE userId = ? AND productId = ?",
+      [quantity, userId, productId],
+      (err, result) => {
+        if (err) {
+          console.error(
+            `Error updating quantity (userId: ${userId}, productId: ${productId}):`,
+            err
+          );
+          return callback(err);
+        }
+        // Fetch updated cart to return
+        Cart.getCart(userId, callback);
+      }
+    );
+  }
+  
+
 
   // Remove product from the user's cart
   static removeFromCart(userId, productId, callback) {
     db.query(
       "DELETE FROM carts WHERE userId = ? AND productId = ?",
       [userId, productId],
-      callback
+      (err, result) => {
+        if (err) {
+          console.error(`Error removing product (userId: ${userId}, productId: ${productId}):`, err);
+          return callback(err);
+        }
+  
+        // Fetch updated cart to return
+        Cart.getCart(userId, callback);
+      }
     );
   }
+  
 
 }
 

@@ -9,6 +9,8 @@ import Addproduct from './screens/admin/Addproduct/Addproduct'
 import Viewproduct from './screens/admin/ViewProduct/Viewproduct'
 import Adminhome from './screens/admin/Home/Adminhome'
 import Cart from './components/Cart/Cart'
+import AllProducts from './screens/admin/AllProducts/AllProducts'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
         <Route path='/Adminhome' element={<Adminhome/>} />
         <Route path='/Viewproduct' element={<Viewproduct/>} />
         <Route path='/Cart' element={<Cart/>} />
+        <Route path='/AllProducts' element={<AllProducts/>} />
+        <Route path='/Footer' element={<Footer/>} />
       </Routes>
     </Router>
   )

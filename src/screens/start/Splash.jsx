@@ -2,6 +2,7 @@ import React from 'react'
 import './Splash.css'
 import { Link } from 'react-router-dom'
 import Home from '../Home/Home'
+import Footer from '../../components/Footer/Footer';
 const Splash = () => {
  
     
@@ -22,6 +23,7 @@ const Splash = () => {
         
       </div>
     }
+    <Footer />
    </div>
   )
 }

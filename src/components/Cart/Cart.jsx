@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './Cart.css'; // Import the CSS file
+import Footer from '../../components/Footer/Footer';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalAmount, setTotalAmount] = useState(0); // State for total amount
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -21,6 +23,7 @@ const Cart = () => {
 
         if (Array.isArray(data)) {
           setCartItems(data);
+          calculateTotalAmount(data); // Calculate total amount after fetching items
         } else {
           setCartItems([]); // Set empty array if the data is not an array
         }
@@ -35,45 +38,10 @@ const Cart = () => {
     fetchCartItems();
   }, []);
 
-  const removeFromCart = async (productId) => {
-    const token = localStorage.getItem("x-auth-token");
-    try {
-      await fetch("http://localhost:3000/api/cart/remove-from-cart", {
-        method: "DELETE",
-        body: JSON.stringify({ productId }),
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token, // Send the token in the request header
-        },
-      });
-      const res = await fetch("http://localhost:3000/api/cart/get-cart", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token, // Send the token in the request header
-        },
-      });
-      const data = await res.json();
-      if (Array.isArray(data)) {
-        setCartItems(data);
-      } else {
-        setCartItems([]);
-      }
-    } catch (error) {
-      console.error("Error removing product from cart:", error);
-    }
-  };
-
   // Handle quantity update
   const updateQuantity = async (productId, newQuantity) => {
     const token = localStorage.getItem("x-auth-token");
-
-    // If quantity is less than or equal to 0, remove the item
-    if (newQuantity <= 0) {
-      removeFromCart(productId);
-      return;
-    }
-
+  
     try {
       const res = await fetch("http://localhost:3000/api/cart/update-quantity", {
         method: "PATCH",
@@ -83,16 +51,25 @@ const Cart = () => {
           "x-auth-token": token,
         },
       });
-
+  
+      if (!res.ok) {
+        throw new Error("Failed to update quantity");
+      }
+  
       const data = await res.json();
       if (Array.isArray(data)) {
         setCartItems(data);
-      } else {
-        setCartItems([]);
+        calculateTotalAmount(data); // Recalculate total after updating quantity
       }
     } catch (error) {
       console.error("Error updating product quantity:", error);
     }
+  };
+
+  // Calculate total amount
+  const calculateTotalAmount = (items) => {
+    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    setTotalAmount(total);
   };
 
   if (loading) {
@@ -102,6 +79,9 @@ const Cart = () => {
   return (
     <div className="cart-container">
       <h1 className="cart-title">Your Cart 🛒</h1>
+      <Link to="/home">
+        <button className="back-btn">Back</button>
+      </Link>
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
@@ -122,17 +102,19 @@ const Cart = () => {
                   <td>
                     <div className="quantity-controls">
                       <button
-                        onClick={() =>
-                          updateQuantity(item.product_id, item.quantity - 1)
-                        }
+                        onClick={() => {
+                          console.log("Product ID:", item.id, "Quantity:", item.quantity);
+                          updateQuantity(item.id, item.quantity - 1);
+                        }}
                       >
                         -
                       </button>
                       {item.quantity}
                       <button
-                        onClick={() =>
-                          updateQuantity(item.product_id, item.quantity + 1)
-                        }
+                        onClick={() => {
+                          console.log("Product ID:", item.id, "Quantity:", item.quantity);
+                          updateQuantity(item.id, item.quantity + 1);
+                        }}
                       >
                         +
                       </button>
@@ -144,11 +126,15 @@ const Cart = () => {
           </table>
         </div>
       )}
+      <div className="total-amount">
+        <h3>Total Amount: ₹{totalAmount.toFixed(2)}</h3> {/* Display total amount */}
+      </div>
       <Link to="/checkout">
         <button className="checkout-btn">Proceed to Checkout</button>
       </Link>
+      <Footer />
     </div>
-  );
+  );     
 };
 
 export default Cart;
