@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Nav.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // Only navigate to SearchPage if the searchQuery is not empty
+      navigate(`/SearchPage?query=${searchQuery}`);
+    }
+  };
+
   return (
     <div className="nav-container">
       <div className="nav-parent">
@@ -27,8 +37,13 @@ const Nav = () => {
         </div>
       </div>
       <div className="search-bar">
-        <input type="text" placeholder="Search products..." />
-        <button>Search</button>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} // Update search query on input change
+        />
+        <button onClick={handleSearch}>Search</button>
       </div>
     </div>
   );

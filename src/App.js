@@ -13,6 +13,7 @@ import Footer from './components/Footer/Footer'
 import AboutPage from './screens/Navs/AboutPage'
 import ProductsPage from './screens/Navs/ProductPage'
 import ServicePage from './screens/Navs/ServicePage'
+import SearchPage from './screens/Navs/SearchPage'
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/ServicePage' element={<ServicePage/>} />
         <Route path='/AboutPage' element={<AboutPage/>} />
         <Route path='/ProductPage' element={<ProductsPage/>} />
+        <Route path='/SearchPage' element={<SearchPage/>} />
       </Routes>
     </Router>
   )

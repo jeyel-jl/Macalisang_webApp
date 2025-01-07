@@ -1,0 +1,33 @@
+.search-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .search-heading {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .clear-search-button {
+    background-color: #ff6347; /* Red color for clear button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .clear-search-button:hover {
+    background-color: #e55347;
+  }
+  
+  .search-results {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
