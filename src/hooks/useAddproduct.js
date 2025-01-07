@@ -5,10 +5,8 @@ export const useAddproduct = () => {
         method:'POST',
         headers:{
             "Content-Type": "application/json",
-        //    "x-auth-token":localStorage.getItem("x-auth-token")
         },
         body:JSON.stringify({
-            //userId: localStorage.getItem("x-auth-token"),
             name: name,
             detail: detail,
             category: category,

@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     background-color: transparent;
 }
 
-.nav-parent{
+.nav-parent {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -13,31 +13,38 @@
     padding-top: 20px;
 }
 
-.left-nav h1{
+.left-nav h1 {
     color: rgb(22, 22, 22);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 30px;
 }
 
-.mid-nav{
+.mid-nav {
     display: flex;
     flex-direction: row;
     gap: 25px;
 }
 
-.mid-nav p{
+.mid-nav p {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(71, 71, 71);
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.right-nav{
+/* Hover effect for mid-nav links */
+.mid-nav p:hover {
+    color: rgb(0, 123, 255); /* Change color on hover */
+}
+
+.right-nav {
     display: flex;
     gap: 20px;
 }
 
-.right-nav p{
+.right-nav p {
     background-color: rgb(27, 27, 27);
     color: white;
     padding-left: 15px;
@@ -48,5 +55,13 @@
     border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
-    font-weight: 5  00;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for right-nav links */
+.right-nav p:hover {
+    color: rgb(0, 123, 255); /* Change color on hover */
+    background-color: rgb(27, 27, 27); /* Keep the same background */
 }

@@ -8,6 +8,7 @@ import Singleproduct from './screens/Singleproduct/Singleproduct'
 import Addproduct from './screens/admin/Addproduct/Addproduct'
 import Viewproduct from './screens/admin/ViewProduct/Viewproduct'
 import Adminhome from './screens/admin/Home/Adminhome'
+import Cart from './components/Cart/Cart'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/Addproduct' element={<Addproduct/>} />
         <Route path='/Adminhome' element={<Adminhome/>} />
         <Route path='/Viewproduct' element={<Viewproduct/>} />
+        <Route path='/Cart' element={<Cart/>} />
       </Routes>
     </Router>
   )

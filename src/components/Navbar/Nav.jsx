@@ -1,49 +1,53 @@
-import React from 'react'
-import './Nav.css'
-import { Link } from 'react-router-dom'
-
+import React from 'react';
+import './Nav.css';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-  <div className="div">
-    {
-      (localStorage.getItem('x-auth-token')) ?   <div className="nav-parent">
-      <div className="left-nav">
-          <h1>FurEver 🛒</h1>
-      </div>
-      <div className="mid-nav">
-          <p>Home</p>
-          <p>About</p>
-          <p>Service</p>
-          <p>Product</p>
-          <p>About</p>
-      </div>
-      <div className="right-nav">
-         <Link to='/'> <p>Go To Cart</p></Link>
-         <Link to='/Auth' onClick={()=>{
-          localStorage.removeItem('x-auth-token')
-         }}> <p>Logout</p></Link>
-      </div>
-
-  </div> :   <div className="nav-parent">
-      <div className="left-nav">
-          <h1>FurEver 🛒</h1>
-      </div>
-      <div className="mid-nav">
-          <p>Home</p>
-          <p>About</p>
-          <p>Service</p>
-          <p>Product</p>
-          <p>About</p>
-      </div>
-      <div className="right-nav">
-         <Link to='/Auth'> <p>Get Started</p></Link>
-      </div>
-
-  </div>
-    }
-  </div>
-  )
+    <div className="div">
+      {
+        (localStorage.getItem('x-auth-token')) ? 
+        <div className="nav-parent">
+          <div className="left-nav">
+            <h1>FurEver 🛒</h1>
+          </div>
+          <div className="mid-nav">
+            <Link to="/home"><p>Home</p></Link>
+            <Link to="/about"><p>About</p></Link>
+            <Link to="/service"><p>Service</p></Link>
+            <Link to="/product"><p>Product</p></Link>
+            <Link to="/about"><p>About</p></Link>
+          </div>
+          <div className="right-nav">
+            <Link to='/Cart'>
+              <p>Go To Cart</p>
+            </Link>
+            <Link to='/Auth' onClick={() => {
+              localStorage.removeItem('x-auth-token');
+            }}>
+              <p>Logout</p>
+            </Link>
+          </div>
+        </div> : 
+        <div className="nav-parent">
+          <div className="left-nav">
+            <h1>FurEver 🛒</h1>
+          </div>
+          <div className="mid-nav">
+            <Link to="/home"><p>Home</p></Link>
+            <Link to="/about"><p>About</p></Link>
+            <Link to="/service"><p>Service</p></Link>
+            <Link to="/product"><p>Product</p></Link>
+          </div>
+          <div className="right-nav">
+            <Link to='/Auth'> 
+              <p>Get Started</p>
+            </Link>
+          </div>
+        </div>
+      }
+    </div>
+  );
 }
 
-export default Nav
+export default Nav;
