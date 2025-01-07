@@ -62,8 +62,8 @@ const Cart = () => {
         alert("Failed to place order.");
       }
     } catch (error) {
-      console.error("Error placing order:", error);
-      alert("Error placing order.");
+      console.error("No Product in your cart:", error);
+      alert("No Product in your cart.");
     }
   };
 

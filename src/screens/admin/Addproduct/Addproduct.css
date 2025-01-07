@@ -6,6 +6,24 @@
     display: flex;
     width: 100%;
   }
+
+  .add-main .add-form-data{
+    font-size: 1.5rem;
+    background-color: transparent;
+  }
+
+  .add-main .add-form-data .add-heading{
+    font-size: 2rem;
+  }
+
+  .add-main .add-form-data .heading-p{
+    font-size: 1rem;
+  }
+
+  .add-form-data{
+    font-size: 1.5rem;
+    background-color: transparent;
+  }
   
   .add-heading {
     color: rgb(32, 32, 255);

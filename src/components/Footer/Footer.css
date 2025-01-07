@@ -2,9 +2,8 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the page takes up at least the full height */
+  min-height: 100vh;
   margin: 0;
-  margin-bottom: 10px;
   background-color: #a7bdd4;
 }
 
@@ -16,9 +15,8 @@ body {
   width: 100%;
   position: relative;
   margin-top: auto; /* Pushes the footer to the bottom of the page */
-  height: 50px; /* Set a fixed height for the footer */
-  margin-top: 20px; /* Add space above the footer */
-  margin-bottom: 10px;
+  /* Removed fixed height and redundant margin-top to allow flexibility */
+  height: auto;
 }
 
 /* Social icons container */
@@ -55,8 +53,6 @@ body {
 @media screen and (max-width: 768px) {
   .footer-container {
     padding: 8px 15px; /* Adjust padding on smaller devices */
-    height: 40px; /* Reduce height of footer */
-    margin-top: 15px; /* Reduce margin-top for smaller devices */
   }
 
   .footer-social-icon-container {
@@ -72,8 +68,6 @@ body {
 @media screen and (max-width: 480px) {
   .footer-container {
     padding: 5px 10px; /* Smaller padding for very small screens */
-    height: 35px; /* Reduce height further for mobile */
-    margin-top: 10px; /* Add margin-top for mobile */
   }
 
   .footer-social-icon-container {

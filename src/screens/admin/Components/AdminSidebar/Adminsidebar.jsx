@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNodes, faGhost, faTruck, faRss, faOilCan, faBarcode } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNodes, faGhost, faTruck, faOilCan, faBarcode } from '@fortawesome/free-solid-svg-icons';
 import './Adminsidebar.css';
 import { Appcontext } from '../../../../Context/Appcontext';
 import { Link } from 'react-router-dom';
@@ -26,10 +26,6 @@ const Adminsidebar = () => {
         <div className="link1">
           <FontAwesomeIcon icon={faTruck} size='lg' style={{ color: "#367df7" }} />
           <Link to="/AllProducts"><p>All Listed Orders</p></Link>
-        </div>
-        <div className="link1">
-          <FontAwesomeIcon icon={faRss} size='lg' style={{ color: "#367df7" }} />
-          <p>Your Analytics</p>
         </div>
         <div className="link1">
           <FontAwesomeIcon icon={faOilCan} size='lg' style={{ color: "#367df7" }} />

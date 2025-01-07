@@ -23,7 +23,6 @@ const Splash = () => {
         
       </div>
     }
-    <Footer />
    </div>
   )
 }

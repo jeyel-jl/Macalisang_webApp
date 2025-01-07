@@ -1,7 +1,5 @@
 import Nav from '../../components/Navbar/Nav';
-import './Home.css';
 import Header from '../../components/Header/Header';
-import Feature from '../../components/Feature/Feature';
 import Multipleproduct from '../Multipleproduct/Multipleproduct';
 import Footer from '../../components/Footer/Footer';
 import Adminhome from '../admin/Home/Adminhome';

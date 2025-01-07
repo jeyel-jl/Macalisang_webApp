@@ -1,0 +1,87 @@
+/* General page styling */
+.about-page {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #d9e8f5; /* Light blue background */
+}
+
+/* Content container */
+.about-content {
+  padding: 30px;
+  background-color: #ffffff; /* White background for content */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 1000px; /* Reduced max width */
+  margin: 30px auto; /* Reduced margin */
+  transition: all 0.3s ease;
+}
+
+/* Main heading */
+.about-content h1 {
+  font-size: 2rem; /* Smaller font size */
+  color: #2b3a42; /* Dark blue for headings */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700; /* Bold text */
+}
+
+/* Subheading */
+.about-content h2 {
+  font-size: 1.6rem; /* Smaller font size for subheadings */
+  color: #1e2a33; /* Slightly darker blue */
+  margin-top: 30px;
+  font-weight: 700; /* Bold text */
+}
+
+/* Paragraph text */
+.about-content p {
+  font-size: 1rem; /* Smaller font size for paragraphs */
+  color: #4a5a63; /* Middle grayish-blue */
+  line-height: 1.6;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for headings and paragraphs */
+.about-content h2:hover,
+.about-content p:hover {
+  color: #007bb5; /* Hover effect color */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .about-content {
+    padding: 15px; /* Reduced padding for smaller screens */
+  }
+
+  .about-content h1 {
+    font-size: 1.6rem; /* Smaller font size for mobile */
+  }
+
+  .about-content h2 {
+    font-size: 1.4rem; /* Smaller font size for mobile */
+  }
+
+  .about-content p {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
+}
+
+/* Footer styling */
+footer {
+  background-color: #003366; /* Dark blue footer */
+  color: white;
+  padding: 15px 0; /* Reduced padding */
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer a {
+  color: #a7c8e7; /* Light blue for footer links */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

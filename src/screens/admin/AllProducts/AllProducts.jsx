@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './AllProducts.css';
+import Adminsidebar from '../Components/AdminSidebar/Adminsidebar';
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ const AllOrders = () => {
       const token = localStorage.getItem("x-auth-token");
 
       try {
-        const response = await fetch("http://localhost:3000/api/order/admin/get-all-orders", {
+        const response = await fetch("http://localhost:3000/api/order/get-orders", {
           method: "GET",
           headers: {
             "x-auth-token": token,
@@ -18,6 +19,7 @@ const AllOrders = () => {
         });
 
         const data = await response.json();
+        console.log(data);
         setOrders(data);
         setLoading(false);
       } catch (err) {
@@ -29,12 +31,43 @@ const AllOrders = () => {
     fetchOrders();
   }, []);
 
+  const handleStatusChange = async (orderId, newStatus) => {
+    console.log('Changing status for order:', orderId, 'to', newStatus);  // Add this
+    const token = localStorage.getItem("x-auth-token");
+  
+    try {
+      const response = await fetch("http://localhost:3000/api/order/update-order-status", {
+        method: "PATCH",
+        headers: {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId,
+          status: newStatus,
+        }),
+      });
+  
+      const data = await response.json();
+      console.log("Status updated:", data);
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === orderId ? { ...order, status: newStatus } : order
+        )
+      );
+    } catch (err) {
+      console.error("Error updating order status:", err);
+    }
+  };
+  
+
   if (loading) {
     return <div>Loading orders...</div>;
   }
 
   return (
     <div className="container">
+      <Adminsidebar />
       <h1>All Orders</h1>
       <table>
         <thead>
@@ -48,20 +81,27 @@ const AllOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.userId}</td>
-              {order.order_items.map((item) => (
-                <React.Fragment key={item.productId}>
-                  <td>{item.productId}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.price}</td>
-                  <td>{order.status}</td>
-                </React.Fragment>
-              ))}
-            </tr>
-          ))}
+          {orders.map((order) =>
+            order.order_items.map((item) => (
+              <tr key={`${order.id}-${item.productId}`}>
+                <td>{order.id}</td>
+                <td>{order.userId}</td>
+                <td>{item.productId}</td>
+                <td>{item.quantity}</td>
+                <td>{item.price}</td>
+                <td>
+                  <select
+                    value={order.status}
+                    onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="To Ship">To Ship</option>
+                    <option value="Delivered">Delivered</option>
+                  </select>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

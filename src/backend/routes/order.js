@@ -60,9 +60,11 @@ router.get("/get-orders", verifyToken, (req, res) => {
     if (err) {
       return res.status(500).send("Error fetching orders");
     }
+    console.log("Fetched orders:", orders); // Log fetched orders to check the data structure
     res.json(orders);
   });
 });
+
 
 // Admin - Get all orders
 router.get("/admin/get-all-orders", verifyToken, (req, res) => {
@@ -102,29 +104,25 @@ router.get("/admin/get-all-orders", verifyToken, (req, res) => {
 });
 
 // Admin route to update order status
-router.patch("/update-order-status", verifyToken, (req, res) => {
+router.patch("/update-order-status", (req, res) => {
   const { orderId, status } = req.body;
-  const userId = req.userId;
+  console.log('Received orderId:', orderId, 'status:', status);  // Log received data
 
-  // Ensure only admin can update status
-  if (!isAdmin(userId)) {
-    return res.status(403).json({ message: "You are not authorized to update the status" });
-  }
-
-  // Validate the status value
   if (!["Pending", "To Ship", "Delivered"].includes(status)) {
+    console.log("Invalid status:", status);
     return res.status(400).json({ message: "Invalid status" });
   }
 
-  // Update the order status
   Order.updateOrderStatus(orderId, status, (err, result) => {
     if (err) {
+      console.log('Error updating order status:', err);  // Log the error
       return res.status(500).json({ message: "Error updating order status" });
     }
+    console.log("Order status updated successfully");
     res.status(200).json({ message: "Order status updated successfully" });
-    }
-  );
+  });
 });
+
 
 
 module.exports = router;

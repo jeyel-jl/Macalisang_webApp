@@ -10,22 +10,23 @@ const Viewproduct = () => {
 
   useEffect(() => {
     getProduct(); // Fetch product data on page load
-  }, []);
+  }, [getProduct]);
 
   console.log("Admin Products: ", products);
 
   const handleDelete = async (productId) => {
-    const updatedProducts = products.filter((product) => product.id !== productId);
-  dispatch({ type: "DELETE_PRODUCT", payload: productId });
-  try {
-    // Make the API call to delete the product
-    await deleteProduct(productId);
-  } catch (error) {
-    console.error("Error deleting product:", error);
-    // If the API call fails, revert the optimistic UI update
-    dispatch({ type: "SET_API_DATA", payload: products });
-  }
+    // const updatedProducts = products.filter((product) => product.id !== productId); // Unused variable
+    dispatch({ type: "DELETE_PRODUCT", payload: productId });
+    try {
+      // Make the API call to delete the product
+      await deleteProduct(productId);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      // If the API call fails, revert the optimistic UI update
+      dispatch({ type: "SET_API_DATA", payload: products });
+    }
   };
+  
 
   return (
     <>

@@ -73,7 +73,15 @@
   background-color: #d11a2a; /* Darker red on hover */
 }
 
+.view-main .view-heading .view-heading{
+  font-size: 2rem;
+  background-color: transparent;
+}
 
+.view-heading{
+  background-color: transparent;
+  font-size: 2rem;
+}
   .cards {
     display: flex;
     justify-content: center;

@@ -1,0 +1,42 @@
+.products-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .f-heading {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .f-heading h1 {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .f-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 40px 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .f-heading h1 {
+      font-size: 2rem;
+    }
+  
+    .f-main {
+      grid-template-columns: 1fr;
+    }
+  }
+  .footer-container {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  

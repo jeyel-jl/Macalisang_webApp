@@ -108,7 +108,6 @@ const Addproduct = () => {
                   </select>
                 </div>
                 <br />
-                <p>{category}</p>
               </div>
               <div className="textfeild">
                 <h5>Add Product Image URLs</h5>

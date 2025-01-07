@@ -11,9 +11,9 @@ const Nav = () => {
         </div>
         <div className="mid-nav">
           <Link to="/home"><p>Home</p></Link>
-          <Link to="/about"><p>About</p></Link>
-          <Link to="/service"><p>Service</p></Link>
-          <Link to="/product"><p>Product</p></Link>
+          <Link to="/AboutPage"><p>About</p></Link>
+          <Link to="/ServicePage"><p>Service</p></Link>
+          <Link to="/ProductPage"><p>Product</p></Link>
         </div>
         <div className="right-nav">
           <Link to="/Cart"><p>Go To Cart</p></Link>
