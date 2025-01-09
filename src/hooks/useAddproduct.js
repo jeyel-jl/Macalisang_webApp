@@ -20,9 +20,9 @@ export const useAddproduct = () => {
     if (response.status === 200) {
       const data = await response.json();
       alert("Product Added to Database");
-      console.log(data); // Log the actual response data
+      console.log(data);
     } else {
-      const errorData = await response.json(); // Parse the error response
+      const errorData = await response.json();
       alert("There was some error occurred");
       console.log(errorData);
     }

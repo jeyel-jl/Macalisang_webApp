@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Card.css';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
 const Card = ({ id, name, image, category, price }) => {
   const [isFavorite, setIsFavorite] = useState(false);
