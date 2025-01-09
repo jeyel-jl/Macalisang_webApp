@@ -8,7 +8,6 @@ const router = express.Router();
 router.post("/admin/add-product", (req, res) => {
   const { name, detail, category, price, company, image } = req.body;
 
-  console.log("Received product data:", { name, detail, category, price, company, image });
 
   if (!name || !detail || !category || !price || !company || !image) {
     return res.status(400).json({ error: "All fields are required" });
@@ -16,9 +15,9 @@ router.post("/admin/add-product", (req, res) => {
   
   Product.create({ name, detail, category, price, company, image }, (err, result) => {
     if (err) {
-      return res.status(500).send("Error adding product");
+      return res.status(500).json("Error adding product");
     }
-    res.status(200).send("Product added successfully");
+    res.status(200).json("Product added successfully");
   });
 });
 
@@ -35,7 +34,6 @@ router.get("/get-user-all-product", (req, res) => {
       console.warn("No products found in the database.");
       return res.status(404).json({ message: "No products found" });
     }
-    console.log("Products sent to client:", products);
     res.json(products);
   });
 });

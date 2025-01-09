@@ -23,15 +23,6 @@ const Addproduct = () => {
     const updatedImageUrls = [...imageUrls, newImageUrl.trim()];
     await addProduct(name, detail, category, price, company, updatedImageUrls);
 
-    console.log({
-      name,
-      detail,
-      company,
-      category,
-      price,
-      imageUrls: updatedImageUrls,
-    });
-
     setName("");
     setDetail("");
     setPrice("");

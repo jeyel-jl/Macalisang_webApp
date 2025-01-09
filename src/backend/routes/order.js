@@ -47,7 +47,8 @@ router.post("/place-order", verifyToken, (req, res) => {
         }
       });
 
-      res.status(200).json({ message: "Order placed successfully", orderId });
+      res.status(200).json({ message: "Order placed successfully", orderId: result.insertId });
+
     });
   });
 });

@@ -41,11 +41,14 @@ const Cart = () => {
 
 
   const handleCheckout = async () => {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty! Please add items before proceeding.");
+      return;
+    }
+  
     const token = localStorage.getItem("x-auth-token");
-    const userId = 123; // Retrieve this dynamically based on logged-in user
   
     const cartDetails = {
-      userId: userId,
       totalAmount: totalAmount, // Send the total amount
     };
   
@@ -58,6 +61,8 @@ const Cart = () => {
   
       if (response.status === 200) {
         alert("Order placed successfully!");
+        setCartItems([]); // Clear cart items on the frontend
+        setTotalAmount(0);
       } else {
         alert("Failed to place order.");
       }
@@ -66,11 +71,40 @@ const Cart = () => {
       alert("No Product in your cart.");
     }
   };
+  
 
   // Handle quantity update
   const updateQuantity = async (productId, newQuantity) => {
     const token = localStorage.getItem("x-auth-token");
   
+    if (newQuantity <= 0) {
+      // Handle product removal when quantity reaches zero
+      try {
+        const res = await fetch("http://localhost:3000/api/cart/remove-from-cart", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+          body: JSON.stringify({ productId }), // Send productId in the body
+        });
+  
+        if (!res.ok) {
+          throw new Error("Failed to remove product");
+        }
+  
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setCartItems(data);
+          calculateTotalAmount(data); // Recalculate total after removal
+        }
+      } catch (error) {
+        console.error("Error removing product:", error);
+      }
+      return;
+    }
+  
+    // Proceed with quantity update
     try {
       const res = await fetch("http://localhost:3000/api/cart/update-quantity", {
         method: "PATCH",
@@ -94,6 +128,7 @@ const Cart = () => {
       console.error("Error updating product quantity:", error);
     }
   };
+  
 
   // Calculate total amount
   const calculateTotalAmount = (items) => {

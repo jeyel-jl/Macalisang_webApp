@@ -66,10 +66,10 @@ class Cart {
   static removeFromCart(userId, callback) {
     db.query(
       "DELETE FROM carts WHERE userId = ?",
-      [userId],
+      [userId], // Include both userId and productId
       (err, result) => {
         if (err) {
-          console.error(`Error removing product (userId: ${userId}, productId: ${productId}):`, err);
+          console.error(`Error removing product (userId: ${userId}):`, err);
           return callback(err);
         }
   
@@ -78,6 +78,7 @@ class Cart {
       }
     );
   }
+  
   
 
 }

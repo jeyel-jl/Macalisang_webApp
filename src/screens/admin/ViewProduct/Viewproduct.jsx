@@ -10,7 +10,7 @@ const Viewproduct = () => {
 
   useEffect(() => {
     getProduct(); // Fetch product data on page load
-  }, [getProduct]);
+  }, []);
 
   console.log("Admin Products: ", products);
 

@@ -23,7 +23,6 @@
           console.error("Database query error:", err);
           return callback(err, null);
         }
-        console.log("Products fetched:", results);
         return callback(null, results);
       });
     }
